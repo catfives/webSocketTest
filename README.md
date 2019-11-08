@@ -1,8 +1,6 @@
 UI 文档地址
 https://ng.ant.design/docs/getting-started/zh
 
-
-淘宝镜像
 单次使用
 $  npm install --registry=https://registry.npm.taobao.org
 永久使用
@@ -13,3 +11,12 @@ $  npm install --registry=https://registry.npm.taobao.org
 $ npm config set registry https://registry.npm.taobao.org
 
 npm install
+
+
+
+
+代码狗屎,自用测试.
+
+assets 目录下  protoList 设置消息列表.对应 assets/proto文件夹下文件,
+proto 单个协议文件 按demo填写即可
+ 哈哈哈哈哈哈哈哈哈哈哈
