@@ -1,0 +1,11 @@
+{
+  "protos": [{
+      "filPath": "proto/Mahjong.json",
+      "name": "麻将测试"
+    },
+    {
+      "filPath": "./123.json",
+      "name": "斗地主协议2"
+    }
+  ]
+}

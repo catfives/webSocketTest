@@ -1,0 +1,77 @@
+<h1>{{title}}</h1>
+<div nz-row>
+  <div nz-col nzSpan="5">
+    <nz-card style="width:300px;" nzTitle="申请登录" [nzExtra]="extraTemplate">
+      <div style="margin-bottom: 16px;">
+        <nz-input-group nzAddOnBefore="填写账号:">
+          <input type="text" nz-input [(ngModel)]="userInfo.account" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="玩家姓名:">
+          <input type="text" nz-input [(ngModel)]="userInfo.name" />
+        </nz-input-group>
+        <nz-input-group nzAddOnBefore="头像地址:">
+          <input type="text" nz-input [(ngModel)]="userInfo.headImg" />
+        </nz-input-group>
+      </div>
+      <button nz-button nzType="primary" (click)="signLogin()" nzBlock>申请登录</button>
+      <div style="margin-top: 16px;margin-bottom: 5px;">
+        <nz-input-group nzAddOnBefore="ws地址:">
+          <input type="text" nz-input [(ngModel)]="url" />
+        </nz-input-group>
+        <button nz-button nzType="primary" (click)="ConnectedWebSocket()" nzBlock style="margin-top: 5px;">连接</button>
+        <button nz-button nzType="danger" (click)="CloseWebSocket()" nzBlock style="margin-top: 5px;">断开</button>
+      </div>
+      <div>
+        <nz-select [(ngModel)]="selectedValue" nzPlaceHolder="Choose" [nzSize]="small"
+          (ngModelChange)="protoChange($event)">
+          <nz-option *ngFor="let proto of protolist; let i = index" nzValue={{i}} nzLabel={{proto.name}}></nz-option>
+        </nz-select>
+      </div>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="18">
+    <nz-card nzType="inner" nzTitle="websocket测试" [nzExtra]="extraTemplate">
+      <!-- websocket操作 -->
+      <div style="margin: 12px; height: 70px;overflow-y: auto">
+        <nz-tag style="margin-top: 8px;" *ngFor="let mahjong of protos" [nzColor]=mahjong.color
+          (click)="setProto(mahjong.protoStr)">
+          {{mahjong.title}} </nz-tag>
+      </div>
+      <nz-input-group>
+        <div nz-row style="padding-right: 15px;">
+          <div nz-col nzSpan="20"><input type=" text" nz-input [(ngModel)]="sendProto" /></div>
+          <div nz-col nzSpan="3" style="margin-left:12px;">
+            <button nz-button nzType="primary" (click)="SendMessage()">发送</button>
+            <button nz-button nzType="danger" (click)="Clear()" style="margin-left:2px;">清屏</button>
+          </div>
+        </div>
+      </nz-input-group>
+      <div id="div" style="padding-right: 15px; height: 400px;overflow-y: auto;;margin-top: 12px;">
+        <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzBordered]=true
+          [nzSize]="small" [nzSplit]=false>
+          <ng-template #item let-item>
+            <nz-list-item>
+              <nz-list-item-meta [nzTitle]="nzTitle" nzDescription={{item.msg}}>
+                <ng-template #nzTitle>
+                  <p style="color: red;font-size: 12px;margin-bottom: -6px;">{{item.direction}}
+                    <span style="color: royalblue;">{{item.time}}</span></p>
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+        <!-- <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+          <ng-template #item let-item>
+            <nz-comment [nzAuthor]="item.direction" [nzDatetime]="item.time">
+              <nz-comment-content>
+                <p style="color: red;">{{item.msg}}</p>
+              </nz-comment-content>
+              <nz-comment-action (click)="CopyMessage(item.msg)">Copy Message</nz-comment-action>
+            </nz-comment>
+          </ng-template>
+        </nz-list> -->
+      </div>
+
+    </nz-card>
+  </div>
+</div>
